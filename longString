@@ -1,33 +1,41 @@
+import java.util.*
+
+class StringIterator(val s : String){
+  inline fun next() = if (i < s.length) s[i++] else throw NoSuchElementException()
+  inline fun hasNext() = i < s.length
+  private var i = 0
+}
+ 
+inline fun String.iterator() = StringIterator(this)
+
 fun main(args : Array<String>) {
   if (args.size == 0) {
     System.out?.println(0)
     return
   }
-  
+
   var line = ""
   for (arg in args) {
     line += arg + ' '
   }
-  
+
   var longest = 0
   var current = 0
-  
-  for (i in 0..line.length-1) {
-    val c = line[i]
+
+  for (c in line) {
     if ((c in 'a'..'z') || (c in 'A'..'Z')) {
       current = current + 1
     } else {
-      if (current > longest) {        
+      if (current > longest) {
         longest = current
       }
       current = 0
     }
   }
-  
-  if (current > longest) {        
+
+  if (current > longest) {
     longest = current
   }
-  
+
   System.out?.println(longest)
 }
-

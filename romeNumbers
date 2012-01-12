@@ -1,3 +1,13 @@
+import java.util.*
+
+class StringIterator(val s : String){
+  inline fun next() = if (i < s.length) s[i++] else throw NoSuchElementException()
+  inline fun hasNext() = i < s.length
+  private var i = 0
+}
+ 
+inline fun String.iterator() = StringIterator(this)
+
 fun main(args : Array<String>) {
   if (args.size == 0) {
     System.out?.println("Please provide a name as a command-line argument")
@@ -9,8 +19,7 @@ fun main(args : Array<String>) {
   var prev = 0
   var prevAdded = 1000
   
-  for (i in 0..line.length-1) {
-    val c = line[i]
+  for (c in line) {
     val current = when (c) {
       'I','i' -> 1
       'V','v' -> 5
@@ -40,6 +49,10 @@ fun main(args : Array<String>) {
     }    
   }
   
+  if (prevAdded < prev) {
+    System.out?.println("Erroneous rome number - wrong digits order!")
+    return
+  }
   sum += prev
   
   System.out?.println(sum)

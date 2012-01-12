@@ -1,6 +1,6 @@
 fun main(args : Array<String>) {
   if (args.size == 0) {
-    System.out?.println("Please provide a string as a command-line argument")
+    System.out?.println(0)
     return
   }
   

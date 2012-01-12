@@ -1,0 +1,48 @@
+fun main(args : Array<String>) {
+  if (args.size == 0) {
+    System.out?.println("Please provide a name as a command-line argument")
+    return
+  }
+  val line = args[0]
+  
+  var sum = 0
+  var prev = 0
+  var prevAdded = 1000
+  
+  for (i in 0..line.length-1) {
+    val c = line[i]
+    val current = when (c) {
+      'I','i' -> 1
+      'V','v' -> 5
+      'X','x' -> 10
+      'L','l' -> 50
+      'C','c' -> 100
+      'D','d' -> 500
+      'M','m' -> 1000
+      else -> -1
+    }
+    if (current == -1) {
+      System.out?.println("Unknown symbol: ${c}")
+      return
+    }
+    if (prev == 0) {
+      prev = current
+    } else if (prev >= current) {
+      sum += prev
+      if (prevAdded < prev) {
+        System.out?.println("Erroneous rome number - wrong digits order!")
+        return
+      }
+      prevAdded = prev
+      prev = current
+    } else {         
+      prev = current - prev
+    }    
+  }
+  
+  sum += prev
+  
+  System.out?.println(sum)
+  
+}
+

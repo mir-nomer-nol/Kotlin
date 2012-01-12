@@ -1,0 +1,35 @@
+fun main(args : Array<String>) {
+  if (args.size == 0) {
+    System.out?.println("Please provide a string as a command-line argument")
+    return
+  }
+  
+  var line = ""
+  for (i in 0..args.size-1) {
+    line += args[i] + ' '
+  }
+  
+ // val line = args[0]
+  
+  var longest = 0
+  var current = 0
+  
+  for (i in 0..line.length-1) {
+    val c = line[i]
+    if ((c in 'a'..'z') || (c in 'A'..'Z')) {
+      current = current + 1
+    } else {
+      if (current > longest) {        
+        longest = current
+      }
+      current = 0
+    }
+  }
+  
+  if (current > longest) {        
+    longest = current
+  }
+  
+  System.out?.println(longest)
+}
+

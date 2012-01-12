@@ -5,11 +5,9 @@ fun main(args : Array<String>) {
   }
   
   var line = ""
-  for (i in 0..args.size-1) {
-    line += args[i] + ' '
+  for (arg in args) {
+    line += arg + ' '
   }
-  
- // val line = args[0]
   
   var longest = 0
   var current = 0
